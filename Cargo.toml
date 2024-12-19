@@ -2,13 +2,19 @@
 name = "eframe_template"
 version = "0.1.0"
 authors = ["Emil Ernerfeldt <emil.ernerfeldt@gmail.com>"]
-edition = "2021"
+edition = "2024"
 include = ["LICENSE-APACHE", "LICENSE-MIT", "**/*.rs", "Cargo.toml"]
-rust-version = "1.81"
+# rust-version = "1.81"
 
 [package.metadata.docs.rs]
 all-features = true
 targets = ["x86_64-unknown-linux-gnu", "wasm32-unknown-unknown"]
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+allow_attributes = "warn"
 
 [dependencies]
 egui = "0.30"
@@ -40,6 +46,10 @@ opt-level = 2 # fast and small wasm
 [profile.dev.package."*"]
 opt-level = 2
 
+# for use with perf-analysis tools like `samply`
+[profile.profiling]
+inherits = "release"
+debug = true
 
 [patch.crates-io]
 
