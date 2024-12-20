@@ -16,6 +16,10 @@
 # ===================================
 # Custom GitIgnore, Boilerplate
 
+# general security exclusions (api keys, etc.)
+**/.env*
+**/*.log
+
 # designate a directory that won't have its contents synced
 # typically this is part of (`data/no_sync/`)
 **/no_sync/**
@@ -36,6 +40,19 @@
 !.output/profiling/
 
 # ===================================
+# Tooling-specific GitIgnore
+
+# additional target gitignores (from egui)
+target_ra/
+target_wasm/
+
+# trunk output folder (wasm)
+dist/
+
+# https://github.com/lycheeverse/lychee (link checker tooling)
+.lycheecache
+
+# ===================================
 # standard GitHub GitIgnore for Rust (as of 2024-VIII-04)
 # https://github.com/github/gitignore/blob/main/Rust.gitignore
 
@@ -43,12 +60,6 @@
 # will have compiled files and executables
 debug/
 target/
-# additional target gitignores (from egui)
-target_ra/
-target_wasm/
-# trunk output folder (from egui)
-dist/
-
 
 # Remove Cargo.lock from gitignore if creating an executable, leave it for libraries
 # More information here https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
@@ -59,9 +70,3 @@ dist/
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
-
-# Mac stuff:
-.DS_Store
-
-# https://github.com/lycheeverse/lychee (from egui)
-.lycheecache
