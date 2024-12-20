@@ -1,8 +1,6 @@
 [template]
 cargo_generate_version = ">=0.22.0"
 ignore = [
-".git/",
-"Cargo.lock",
 "**/.env*",
 "**/*.log",
 "**/no_sync/**",
@@ -12,13 +10,7 @@ ignore = [
 ".output/logging/**",
 ".output/profiling/**",
 "debug/",
-"target/",
-"target_ra/",
-"target_wasm/",
-"dist/",
 ".lycheecache",
-"debug/",
-"target/",
 "**/*.rs.bk",
 "*.pdb",
 ".DS_Store",]
