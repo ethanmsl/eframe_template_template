@@ -21,12 +21,14 @@ This is a template repo for [eframe](https://github.com/emilk/egui/tree/master/c
 
 Translating this repo into a Cargo-Generate template:
 
-(note: these commands will be destroyed)
+> [!WARNING]
+> These commands will be mangled by both the to and from cargo-generate processes.
+
 ```zsh
-echo
+echo '
 rm -rf dist/ target/ target_wasm/ target_ra/ 
 rm -f fill_template.sh fill_template.ps1 flake.nix Cargo.lock
-rm -f .env .lycheecache index.html
+rm -f .env .lycheecache
 echo
 sd 'emilk(\.github\.io/)eframe_template' '{{ github_username }}${1}{{ project-name }}' $(fd . -t f)
 sd 'emilk(/)eframe_template'             '{{ github_username }}${1}{{ crate_name }}' $(fd --hidden . -t f)
@@ -45,9 +47,15 @@ rg --hidden 'emilk/eframe.template'
 fd --unrestricted 'eframe|emilk'
 ```
 
+> [!NOTE]
+> These commands are designed to work *after* undergoing to & from cargo-generate'tion
+
 becuase Cargo-Generate is a time sink that we need to move from in the near future, the .github files will additionally require:
 ```zsh
+rg --hidden '\{\{ crate_name \}\}'
 sd '\{\{ crate_name \}\}' '{{ crate_name }}' $(fd --hidden . '.github/' -t f)
+rg --hidden '\{\{ crate_name \}\}'
+rg --hidden '{{ crate_name }}' .github/
 ```
 
 ## Web Locally
