@@ -1,24 +1,8 @@
-[template]
-cargo_generate_version = ">=0.22.0"
-ignore = [
-"**/.env*",
-"**/*.log",
-"**/no_sync/**",
-"**/no-sync/**",
-"**/nosync/**",
-".output/**",
-".output/logging/**",
-".output/profiling/**",
-"debug/",
-".lycheecache",
-"**/*.rs.bk",
-"*.pdb",
-".DS_Store",]
-
 [placeholders.github_username]
 prompt = "Enter your name"
 # choices = ["Alice", "Bob"]
 # default = "Alice"
 # regex filter: alphanumeric+underscore, alphatostart
 regex = "^([a-z]|[A-Z])([a-z]|[A-Z]|[0-9]|[_])*$"
-type = "string" # string, text, editor, bool
+type = "string"
+# string, text, editor, bool
