@@ -1,8 +1,6 @@
-
-
 [template]
 cargo_generate_version = ">=0.22.0"
-exclude = [
+ignore = [
 ".git/",
 "Cargo.lock",
 "**/.env*",
@@ -24,11 +22,6 @@ exclude = [
 "**/*.rs.bk",
 "*.pdb",
 ".DS_Store",]
-
-include = [
-"!**.gitkeep",
-"!.output/logging/",
-"!.output/profiling/",]
 
 [placeholders.github_username]
 prompt = "Enter your name"
