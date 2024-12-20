@@ -18,6 +18,8 @@ CYN := '\033[0;36m' # Cyan
 BLU := '\033[0;34m' # Blue
 GRN := '\033[0;32m' # Green
 PRP := '\033[0;35m' # Purple
+RED := '\033[0;31m' # Red
+YLW := '\033[0;33m' # Yellow
 BRN := '\033[0;33m' # Brown
 
 # Default, lists commands.
@@ -26,7 +28,7 @@ _default:
 
 # Initialize repository.
 [confirm]
-init: && list-external-deps _gen-env _gen-git-hooks
+init: && list-external-deps _gen-env _gen-git-hooks _external-wasm-installs
     cargo clean
     cargo build
     cargo doc
@@ -52,6 +54,16 @@ update-soft:
 [confirm]
 update-hard: update-soft
     cargo update --verbose --breaking -Z unstable-options
+
+# Run Trunk server and open webpage to access it
+web-local:
+    @echo 'A webpage will open; paste (auto-copied) site in once trunk server is running.'
+    @echo '{{GRN}}-------{{NC}} go to: {{BLU}}http://localhost:8080/index.html#dev{{NC}} {{GRN}}-------{{NC}}'
+    echo 'http://localhost:8080/index.html#dev' | pbcopy
+    (sleep 2; open http://localhost:8080/index.html#dev )&
+    @echo '{{PRP}}Address {{RED}}copied{{PRP}} to clipboard for pasting.{{NC}}'
+    @echo 'NOTE: clicking link may not work.  Hashtag is not properly transmitted.'
+    trunk serve
 
 # Add a package to workspace // adds and removes a bin to update workspace package register
 packadd name:
@@ -115,6 +127,11 @@ _remind-setenv:
 
 # ######################################################################## #
 
+# Ensure wasm32 traget prepared for rust and install `trunk`
+_external-wasm-installs:
+    rustup target add wasm32-unknown-unknown
+    cargo install --locked trunk
+
 # Generate .env file from template, if .env file not present.
 _gen-env:
     @ if [ -f '.env' ]; then echo '`{{BRN}}.env{{NC}}` exists, {{PRP}}skipping creation{{NC}}...' && exit 0; else cp -n .support_data/template.env .env; echo "{{BLU}}.env{{NC}} created from template. {{GRN}}Please fill in the necessary values.{{NC}}"; echo "e.g. via 'nvim .env'"; fi
@@ -129,6 +146,22 @@ _gen-precommit-hook:
 # Attempt to add `commit-msg` git-hook. (no overwrite)
 _gen-commitmsg-hook:
     @ if [ -f '.git/hooks/commit-msg' ]; then echo '`.git/hooks/{{BRN}}commit-msg{{NC}}` exists, {{PRP}}skipping creation{{NC}}...' && exit 0; else cp -n .support_data/git_hooks/commit-msg .git/hooks/commit-msg; chmod u+x .git/hooks/commit-msg; echo live "{{BLU}}commit-msg{{NC}} hook added to {{GRN}}.git/hooks{{NC}} and set as executable"; fi
+
+# ######################################################################## #
+
+# ripgrep for elements in braces -- to see mustache insertions
+[no-cd]
+_template-rg *INSIDE:
+	@ echo "-- NOTE: this is run from calling directory; not justfile directory. --"
+	rg --hidden "\{\{.*{{INSIDE}}.*\}\}"
+
+# build deployable release and open some convenience docs
+_web-deploy:
+    @ echo 'Note: a github workflow should have already deployed this to github pages if permitted.'
+    trunk build --release
+    @ echo "a static site has been loaded to dist/, you can add this to, for example, github pages"
+    sleep 2
+    open https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 
 # ######################################################################## #
 
