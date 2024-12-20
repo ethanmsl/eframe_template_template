@@ -1,4 +1,23 @@
+# Cargo-Generate eframe Template 
+
+
+use with:
+
+```zsh
+cargo generate --git https://github.com/ethanmsl/eframe_template_template.git
+git add .
+git committ --message "chore: initial committ"
+echo 'interactive create with: '
+gh repo create
+git push
+```
+(if local `cargo generate --path <...>` also works)
+
+After giving some time for GitHub Actions to generate page, go to GitHub Pages and load from branch `gh-pages`
+
+
 ## GitHub Actions
+
 
 ### GitHub Pages
 - `gh-pages` branch is used to deploy the app to GitHub Pages.  Requires
