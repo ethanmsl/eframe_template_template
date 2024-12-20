@@ -127,7 +127,7 @@ _remind-setenv:
 
 # ######################################################################## #
 
-# Ensure wasm32 traget prepared for rust and install `trunk`
+# Ensure wasm32 target prepared for rust and install `trunk`
 _external-wasm-installs:
     rustup target add wasm32-unknown-unknown
     cargo install --locked trunk
