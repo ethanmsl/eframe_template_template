@@ -29,3 +29,11 @@ include = [
 "!**.gitkeep",
 "!.output/logging/",
 "!.output/profiling/",]
+
+[placeholders.github_username]
+prompt = "Enter your name"
+# choices = ["Alice", "Bob"]
+# default = "Alice"
+# regex filter: alphanumeric+underscore, alphatostart
+regex = "^([a-z]|[A-Z])([a-z]|[A-Z]|[0-9]|[_])*$"
+type = "string" # string, text, editor, bool
