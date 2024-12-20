@@ -15,7 +15,7 @@ Translating this repo into a Cargo-Generate template:
 
 > [!WARNING]
 > These commands will be mangled by both the to and from cargo-generate processes.
-
+> There are in this 'super-parent' for documentation purposes only.
 ```zsh
 echo
 rm -rf dist/ target/ target_wasm/ target_ra/ 
@@ -41,8 +41,7 @@ fd --unrestricted 'eframe|emilk'
 
 > [!NOTE]
 > These commands are designed to work *after* undergoing to & from cargo-generate'tion
-
-becuase Cargo-Generate is a time sink that we need to move from in the near future, the .github files will additionally require:
+> but should not be needed.
 ```zsh
 rg --hidden '\{\{ crate_name \}\}'
 echo '---- applying change ---'
