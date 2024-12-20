@@ -25,7 +25,7 @@ Translating this repo into a Cargo-Generate template:
 > These commands will be mangled by both the to and from cargo-generate processes.
 
 ```zsh
-echo '
+echo
 rm -rf dist/ target/ target_wasm/ target_ra/ 
 rm -f fill_template.sh fill_template.ps1 flake.nix Cargo.lock
 rm -f .env .lycheecache
