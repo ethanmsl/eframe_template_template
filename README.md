@@ -21,6 +21,7 @@ This is a template repo for [eframe](https://github.com/emilk/egui/tree/master/c
 
 Translating this repo into a Cargo-Generate template:
 
+(note: these commands will be destroyed)
 ```zsh
 echo
 rm -rf dist/ target/ target_wasm/ target_ra/ 
@@ -42,6 +43,11 @@ rg --hidden 'emilk.*eframe_template'
 rg --hidden '[^/]eframe.template'
 rg --hidden 'emilk/eframe.template'
 fd --unrestricted 'eframe|emilk'
+```
+
+becuase Cargo-Generate is a time sink that we need to move from in the near future, the .github files will additionally require:
+```zsh
+sd '\{\{ crate_name \}\}' '{{ crate_name }}' $(fd --hidden .github -t f)
 ```
 
 ## Web Locally
