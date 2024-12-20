@@ -47,7 +47,7 @@ fd --unrestricted 'eframe|emilk'
 
 becuase Cargo-Generate is a time sink that we need to move from in the near future, the .github files will additionally require:
 ```zsh
-sd '\{\{ crate_name \}\}' '{{ crate_name }}' $(fd --hidden .github -t f)
+sd '\{\{ crate_name \}\}' '{{ crate_name }}' $(fd --hidden . '.github/' -t f)
 ```
 
 ## Web Locally
