@@ -67,7 +67,7 @@ impl eframe::App for TemplateApp {
 
                 egui::CentralPanel::default().show(ctx, |ui| {
                         // The central panel the region left after adding TopPanel's and SidePanel's
-                        ui.heading("eframe template");
+                        ui.heading("{{ project-name | title_case }}");
 
                         ui.horizontal(|ui| {
                                 ui.label("Write something: ");
@@ -82,7 +82,7 @@ impl eframe::App for TemplateApp {
                         ui.separator();
 
                         ui.add(egui::github_link_file!(
-                                "https://github.com/emilk/eframe_template/blob/main/",
+                                "https://github.com/{{ github_username }}/{{ crate_name }}/blob/main/",
                                 "Source code."
                         ));
 

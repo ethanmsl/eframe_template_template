@@ -7,6 +7,6 @@ targets = [ "wasm32-unknown-unknown" ]
 components = [ "rustfmt", "clippy" ]
 
 # [toolchain]
-# channel = "1.81"  # Avoid specifying a patch version here; see https://github.com/emilk/eframe_template/issues/145
+# channel = "1.81"  # Avoid specifying a patch version here; see https://github.com/{{ github_username }}/{{ crate_name }}/issues/145
 # components = [ "rustfmt", "clippy" ]
 # targets = [ "wasm32-unknown-unknown" ]

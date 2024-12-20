@@ -18,9 +18,9 @@ fn main() -> eframe::Result {
                 ..Default::default()
         };
         eframe::run_native(
-                "eframe template",
+                "{{ project-name | title_case }}",
                 native_options,
-                Box::new(|cc| Ok(Box::new(eframe_template::TemplateApp::new(cc)))),
+                Box::new(|cc| Ok(Box::new({{ crate_name }}::TemplateApp::new(cc)))),
         )
 }
 
@@ -44,7 +44,7 @@ fn main() {
                         .expect("the_canvas_id was not a HtmlCanvasElement");
 
                 let start_result = eframe::WebRunner::new()
-                        .start(canvas, web_options, Box::new(|cc| Ok(Box::new(eframe_template::TemplateApp::new(cc)))))
+                        .start(canvas, web_options, Box::new(|cc| Ok(Box::new({{ crate_name }}::TemplateApp::new(cc)))))
                         .await;
 
                 // Remove the loading text and spinner:

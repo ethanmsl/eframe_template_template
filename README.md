@@ -22,19 +22,19 @@ rm -rf dist/ target/ target_wasm/ target_ra/
 rm -f fill_template.sh fill_template.ps1 flake.nix Cargo.lock
 rm -f .env .lycheecache
 echo
-sd 'emilk(\.github\.io/)eframe_template' '{{ github_username }}${1}{{ project-name }}' $(fd . -t f)
-sd 'emilk(/)eframe_template'             '{{ github_username }}${1}{{ crate_name }}' $(fd --hidden . -t f)
-sd 'eframe_template(_bg\.wasm|\.js)'     '{{ crate_name }}${1}'                      $(fd --hidden . -t f)
-sd '(name = ")eframe_template'           '${1}{{ project-name }}'                    $(fd --hidden . -t f)
-sd '([^/])eframe_template'               '${1}{{ crate_name }}'                      $(fd --hidden . -t f)
-sd '([^/])eframe template'               '${1}{{ project-name | title_case }}'       $(fd --hidden . -t f)
-sd '([^/])eframe.template'               '${1}{{ project-name }}'                    $(fd --hidden . -t f)
+sd 'emilk(\.github\.io/){{ crate_name }}' '{{ github_username }}${1}{{ project-name }}' $(fd . -t f)
+sd 'emilk(/){{ crate_name }}'             '{{ github_username }}${1}{{ crate_name }}' $(fd --hidden . -t f)
+sd '{{ crate_name }}(_bg\.wasm|\.js)'     '{{ crate_name }}${1}'                      $(fd --hidden . -t f)
+sd '(name = "){{ crate_name }}'           '${1}{{ project-name }}'                    $(fd --hidden . -t f)
+sd '([^/]){{ crate_name }}'               '${1}{{ crate_name }}'                      $(fd --hidden . -t f)
+sd '([^/]){{ project-name | title_case }}'               '${1}{{ project-name | title_case }}'       $(fd --hidden . -t f)
+sd '([^/]){{ project-name }}'               '${1}{{ project-name }}'                    $(fd --hidden . -t f)
 sd '(authors = \[").*("\])'              '${1}{{ authors }}${2}'                     Cargo.toml
 echo
 cargo generate --test
 echo
-rg --hidden 'emilk.*eframe_template'
-rg --hidden '[^/]eframe.template'
+rg --hidden 'emilk.*{{ crate_name }}'
+rg --hidden '[^/]{{ project-name }}'
 rg --hidden 'emilk/eframe.template'
 fd --unrestricted 'eframe|emilk'
 ```
@@ -84,4 +84,4 @@ We use [Trunk](https://trunkrs.dev/) to build for web target.
 >       - <branch name>
 > ```
 
-You can test the template app at <https://emilk.github.io/eframe_template/>.
+You can test the template app at <https://{{ github_username }}.github.io/{{ project-name }}/>.
