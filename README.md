@@ -53,7 +53,9 @@ fd --unrestricted 'eframe|emilk'
 becuase Cargo-Generate is a time sink that we need to move from in the near future, the .github files will additionally require:
 ```zsh
 rg --hidden '\{\{ crate_name \}\}'
+echo '---- applying change ---'
 sd '\{\{ crate_name \}\}' '{{ crate_name }}' $(fd --hidden . '.github/' -t f)
+echo '---- change applied---'
 rg --hidden '\{\{ crate_name \}\}'
 rg --hidden '{{ crate_name }}' .github/
 ```
