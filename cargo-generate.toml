@@ -1,5 +1,5 @@
 [placeholders.github_username]
-prompt = "Enter your name"
+prompt = "Enter your GitHub username"
 # choices = ["Alice", "Bob"]
 # default = "Alice"
 # regex filter: alphanumeric+underscore, alphatostart
