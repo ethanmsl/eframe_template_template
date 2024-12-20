@@ -6,8 +6,18 @@
 This is a template repo for [eframe](https://github.com/emilk/egui/tree/master/crates/eframe), a framework for writing apps using [egui](https://github.com/emilk/egui/).
 
 
+## GitHub Actions
 
-### Creating a Cargo-Generate template
+### GitHub Pages
+- `gh-pages` branch is used to deploy the app to GitHub Pages.  Requires
+
+### Testing
+- operating on `nightly`
+
+### Release Generation
+- requires api-token with appropriate permisssion
+
+## Creating a Cargo-Generate template
 
 Translating this repo into a Cargo-Generate template:
 
@@ -32,14 +42,7 @@ rg --hidden 'emilk/eframe.template'
 fd --unrestricted 'eframe|emilk'
 ```
 
-### Learning about egui
-
-`src/app.rs` contains a simple example app. This is just to give some inspiration - most of it can be removed if you like.
-
-The official egui docs are at <https://docs.rs/egui>. If you prefer watching a video introduction, check out <https://www.youtube.com/watch?v=NtUkr_z7l84>. For inspiration, check out the [the egui web demo](https://emilk.github.io/egui/index.html) and follow the links in it to its source code.
-
-
-### Web Locally
+## Web Locally
 
 > [!NOTE]
 > See just command `web-local` as well.
@@ -55,7 +58,7 @@ We use [Trunk](https://trunkrs.dev/) to build for web target.
 > `assets/sw.js` script will try to cache our app, and loads the cached version when it cannot connect to server allowing your app to work offline (like PWA).
 > appending `#dev` to `index.html` will skip this caching, allowing us to load the latest builds during development.
 
-### Web Deploy
+## Web Deploy
 1. Just run `trunk build --release`.
 2. It will generate a `dist` directory as a "static html" website
 3. Upload the `dist` directory to any of the numerous free hosting websites including [GitHub Pages](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
@@ -73,9 +76,3 @@ We use [Trunk](https://trunkrs.dev/) to build for web target.
 > ```
 
 You can test the template app at <https://emilk.github.io/eframe_template/>.
-
-## Updating egui
-
-As of 2023, egui is in active development with frequent releases with breaking changes. [eframe_template](https://github.com/emilk/eframe_template/) will be updated in lock-step to always use the latest version of egui.
-
-When updating `egui` and `eframe` it is recommended you do so one version at the time, and read about the changes in [the egui changelog](https://github.com/emilk/egui/blob/master/CHANGELOG.md) and [eframe changelog](https://github.com/emilk/egui/blob/master/crates/eframe/CHANGELOG.md).
